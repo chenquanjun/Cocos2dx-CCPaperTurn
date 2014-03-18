@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "CCPaperTurn.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -28,57 +29,77 @@ bool HelloWorld::init()
     {
         return false;
     }
+    
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    _testLayer = CCLayer::create();
+    this->addChild(_testLayer);
+    
+    do {//menu btn
+        
+        CCMenu *menu = CCMenu::create();
+        this->addChild(menu);
+        menu->setPosition(CCPointZero);
+        
+        CCLabelTTF *label = CCLabelTTF::create("测试", "Arial", 30);
+        
+        CCMenuItemLabel *labelBtn = CCMenuItemLabel::create(label, this, menu_selector(HelloWorld::testBtn));
+        
+        labelBtn->setPosition(ccp(winSize.width * 0.5f, winSize.height * 0.2f));
+        
+        menu->addChild(labelBtn);
+        
+    } while (0);
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        this,
-                                        menu_selector(HelloWorld::menuCloseCallback) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
-
-    // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition( CCPointZero );
-    this->addChild(pMenu, 1);
-
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
-
-    // ask director the window size
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 2, size.height - 20) );
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
     CCSprite* pSprite = CCSprite::create("HelloWorld.png");
 
+    pSprite->setFlipX(-1);
     // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width/2, size.height/2) );
+    pSprite->setPosition( ccp(winSize.width * 0.8f , winSize.height/2) );
 
     // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+    _testLayer->addChild(pSprite, 0);
+    
+ 
     
     return true;
 }
 
-void HelloWorld::menuCloseCallback(CCObject* pSender)
+void HelloWorld::testBtn(CCObject* pSender)
 {
-    CCDirector::sharedDirector()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+    do{//翻页动画
+        bool isRight = false;
+        
+        float halfPageTurnTime = 1; //半个翻页时间
+        
+        CCPaperTurn *paperTurnStepOne = CCPaperTurn::create(halfPageTurnTime, isRight);
+        paperTurnStepOne->setPaperMargin(0.504, 1, 0, 1);
+        CCPaperTurn *paperTurnStepTwo = CCPaperTurn::create(halfPageTurnTime, !isRight);
+        paperTurnStepTwo->setPaperMargin(0.504, 1, 0, 1);
+        
+        CCPoint pointAnimStart;//翻页坐标点偏移参数
+        CCPoint pointAnimMid;//翻页坐标点偏移参数
+        
+        
+        if (isRight) {
+            pointAnimStart = ccp(-7, 0);
+            pointAnimMid = ccp(7, 0);
+        }else {
+            pointAnimStart = ccp(0, 0);
+            pointAnimMid = ccp(-7, 0);
+        }
+        
+        CCSequence *seqPaperTurn = CCSequence::create(
+                                                      paperTurnStepOne,
+                                                      CCMoveBy::create(0, pointAnimMid),
+                                                      CCReverseTime::create(paperTurnStepTwo),
+                                                      NULL
+                                                      );
+        
+        _testLayer->setPosition(pointAnimStart);
+        _testLayer->runAction(seqPaperTurn);
+    }while (0);
 }

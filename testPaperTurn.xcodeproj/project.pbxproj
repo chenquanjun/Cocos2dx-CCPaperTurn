@@ -280,6 +280,7 @@
 		8A5203A21892603F00E18AD0 /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5203A11892603F00E18AD0 /* libwebsockets.a */; };
 		8A5203A81892603F00E18AD0 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A5203A71892603F00E18AD0 /* AppDelegate.cpp */; };
 		8A5203AB1892603F00E18AD0 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A5203AA1892603F00E18AD0 /* HelloWorldScene.cpp */; };
+		8A5203B31892604E00E18AD0 /* CCPaperTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A5203B11892604E00E18AD0 /* CCPaperTurn.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -873,6 +874,8 @@
 		8A5203A71892603F00E18AD0 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		8A5203A91892603F00E18AD0 /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		8A5203AA1892603F00E18AD0 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		8A5203B11892604E00E18AD0 /* CCPaperTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPaperTurn.cpp; sourceTree = "<group>"; };
+		8A5203B21892604E00E18AD0 /* CCPaperTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPaperTurn.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2088,6 +2091,8 @@
 				8A5203A71892603F00E18AD0 /* AppDelegate.cpp */,
 				8A5203A91892603F00E18AD0 /* HelloWorldScene.h */,
 				8A5203AA1892603F00E18AD0 /* HelloWorldScene.cpp */,
+				8A5203B11892604E00E18AD0 /* CCPaperTurn.cpp */,
+				8A5203B21892604E00E18AD0 /* CCPaperTurn.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2293,6 +2298,7 @@
 				8A5200A01892603C00E18AD0 /* CCDrawingPrimitives.cpp in Sources */,
 				8A5200E01892603C00E18AD0 /* vec2.c in Sources */,
 				8A52018A1892603D00E18AD0 /* ccGLStateCache.cpp in Sources */,
+				8A5203B31892604E00E18AD0 /* CCPaperTurn.cpp in Sources */,
 				8A5200681892603C00E18AD0 /* CCCamera.cpp in Sources */,
 				8A5203231892603F00E18AD0 /* Json.cpp in Sources */,
 				8A5201EC1892603E00E18AD0 /* unzip.cpp in Sources */,

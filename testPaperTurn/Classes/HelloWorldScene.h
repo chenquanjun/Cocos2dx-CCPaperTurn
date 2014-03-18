@@ -13,10 +13,12 @@ public:
     static cocos2d::CCScene* scene();
     
     // a selector callback
-    void menuCloseCallback(CCObject* pSender);
+    void testBtn(CCObject* pSender);
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
+    
+    CCLayer *_testLayer;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
